@@ -1,14 +1,14 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# Vagrantfile v. 1.17
+# Vagrantfile v. 1.18
 # (Changelog: https://teampasswordmanager.com/docs/install-vagrant-virtualbox/#changelog)
 #
 # Ferran Barba, May 2018
 # info@teampasswordmanager.com
 # https://teampasswordmanager.com
 #
-# This Vagrantfile installs a virtual machine with Ubuntu 14.04 and provisions it using provision.sh (in the same folder)
+# This Vagrantfile installs a virtual machine with Ubuntu 16.04 and provisions it using provision.sh (in the same folder)
 
 # ***************** CONFIGURATION VARIABLES *****************
 # More information: https://teampasswordmanager.com/docs/install-vagrant-virtualbox/#technical-explanation-options

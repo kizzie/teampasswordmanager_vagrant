@@ -3,12 +3,12 @@ TPM-Vagrant for VirtualBox
 
 TPM-Vagrant for VirtualBox Vagrantfile and shell provisioning script to install Team Password Manager in a VirtualBox virtual machine.
 
-TPM-Vagrant installs a Linux Ubuntu 14.04 LTS in a VirtualBox virtual machine with the following components:
+TPM-Vagrant installs a Linux Ubuntu 16.04 LTS in a VirtualBox virtual machine with the following components:
 
 - Some linux utilities: curl, unzip, acl, htop, ntp, software-properties-common
-- Apache 2 
+- Apache 2
 - MySQL Server 5
-- PHP 5.6
+- PHP 7.0
 - Ioncube Loader
 - Team Password Manager (latest version)
 - Firewall (http/s, ssh, ntp, ping)
