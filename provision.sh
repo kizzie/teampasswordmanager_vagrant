@@ -1,19 +1,20 @@
 #!/usr/bin/env bash
 
-# provision.sh v. 1.17
+# provision.sh v. 1.18
 # (Changelog: https://teampasswordmanager.com/docs/install-vagrant-virtualbox/#changelog)
 #
 # Ferran Barba, May 2018
 # info@teampasswordmanager.com
 # https://teampasswordmanager.com
+# Updated / Edited - Kat, May 2019
 #
 # Vagrant shell provisioning file to install the required software to execute Team Password Manager
 #
 # It installs:
 #	- Some linux utilities: curl, unzip, acl, htop, ntp, software-properties-common
 #	- Apache 2
-#	- MySQL Server 5.6
-#	- PHP 5.6
+#	- MySQL Server 5.7
+#	- PHP 7
 #	- Ioncube Loader v. 10.1.0
 #	- Team Password Manager (latest version)
 #	- Firewall (http/s, ssh, ntp, ping)
@@ -121,7 +122,7 @@ sudo debconf-set-selections <<< "mysql-server mysql-server/root_password passwor
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $PARAM_MYSQL_ROOT_PASSWORD"
 
 # Install MySQL Server
-sudo apt-get install -qq mysql-server-5.6
+sudo apt-get install -qq mysql-server-5.7
 
 # Create database and user for Team Password Manager
 MYSQL=`which mysql`
@@ -150,11 +151,11 @@ sudo sed -i 's/;always_populate_raw_post_data = On/always_populate_raw_post_data
 echo "**********************************************"
 echo "* Installing Ioncube Loader"
 cd /usr/lib/php/20151012
-if [ $PARAM_NUM_BITS = "32" ]; then
-	sudo wget --quiet https://teampasswordmanager.com/assets/download/vagrant/ioncube/10.1.0/32/ioncube_loader_lin_7.0.so
-else
-	sudo wget --quiet https://teampasswordmanager.com/assets/download/vagrant/ioncube/10.1.0/64/ioncube_loader_lin_7.0.so
-fi
+wget http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz
+tar -xvf ioncube_loaders_lin_x86-64.tar.gz
+mv ioncube/* .
+rm ioncube_loaders_lin_x86-64.tar.gz
+rm -rf ioncube
 echo "zend_extension = /usr/lib/php/20151012/ioncube_loader_lin_7.0.so" | sudo tee /etc/php/7.0/apache2/conf.d/01-ioncube.ini
 
 # Restart Apache
